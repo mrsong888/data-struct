@@ -15,6 +15,22 @@ class Tools(object):
     def priority_queue(self):
         return _PriorityQueue()
 
+class _WrapperList(object):
+
+    def __init__(self, sequeue):
+        self._sequeue = sequeue
+
+    @property
+    def len(self):
+        return len(self._sequeue)
+
+    def nlargests(self, n):
+        pass
+
+    def nsmallest(self, n):
+        pass
+
+
 class _PriorityQueue(object):
 
     def __init__(self):
@@ -22,6 +38,10 @@ class _PriorityQueue(object):
         self._sentinel = 0
         self._task_lock = threading.RLock()
         self.finder_dict = {}
+
+    @property
+    def queue(self):
+        return self._queue
 
     def add_tasks(self, sequeue, priority=0):
         with self._task_lock:
@@ -68,5 +88,20 @@ class _PriorityQueue(object):
             priority_set.add(entry[0])
         return list(priority_set)
 
-t = Tools()
-print t.priority_queue
+# t = _PriorityQueue()
+# t.add_task(task='first', priority=1)
+# print t.pop_task()
+# t = Tools()
+# p = t.priority_queue
+# p.add_tasks(['first', 'second', 'third'])
+# p.add_task('forth', priority=1)
+# print p.query_all_prioritys()
+# print p._queue
+# p.modify_priority('fifth', priority=2)
+# print p.query_all_prioritys()
+# print p._queue
+# print p.pop_task()
+# print p.pop_task()
+# print p.pop_task()
+# print p.pop_task()
+# p.modify_priority('first', priority=2)
