@@ -88,13 +88,23 @@ class _PriorityQueue(object):
             priority_set.add(entry[0])
         return list(priority_set)
 
+    def __contains__(self, item):
+        if item in self.finder_dict:
+            return True
+        return False
+
+    def clear(self):
+        del self._queue[:]
+        self.finder_dict.clear()
 # t = _PriorityQueue()
 # t.add_task(task='first', priority=1)
 # print t.pop_task()
-# t = Tools()
-# p = t.priority_queue
-# p.add_tasks(['first', 'second', 'third'])
-# p.add_task('forth', priority=1)
+t = Tools()
+p = t.priority_queue
+p.add_tasks(['first', 'second', 'third'])
+p.add_task('forth', priority=1)
+p.clear()
+print 'first' in p
 # print p.query_all_prioritys()
 # print p._queue
 # p.modify_priority('fifth', priority=2)
